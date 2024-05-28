@@ -19,10 +19,10 @@ public class BillingJob implements Job {
 //    public String getName() {
 //        return UUID.randomUUID() + " BillingJob";
 //    }
+    @Override
     public String getName() {
         return "BillingJob";
     }
-
 
     @Override
     public void execute(JobExecution execution) {
@@ -32,7 +32,6 @@ public class BillingJob implements Job {
             String inputFile = jobParameters.getString("input.file");
             System.out.println("processing billing information from file " + inputFile);
             execution.setStatus(BatchStatus.COMPLETED);
-            execution.setExitStatus(ExitStatus.COMPLETED);
             execution.setExitStatus(ExitStatus.COMPLETED.addExitDescription("Successfully processed billing information"));
         } catch (Exception e) {
             execution.addFailureException(e);
